@@ -75,7 +75,7 @@ export class PersoService {
 
   updatePerso(id: any, data: any) {
 
-    return this.http.put(this.url + '/Perso/updatePerso/' + id, data)
+    return this.http.put(this.url + '/Perso/updatePerso/' + id, data, this.httpOptions)
   }
 
 
