@@ -1,0 +1,113 @@
+<div class="my-5 container ">
+
+  <h1 class="text-center">List name Persos!</h1>
+
+  <button type="button" class="btn btn-secondary my-3 " data-bs-toggle="modal" data-bs-target="#exampleModal">
+    + Ajouter un Perso
+  </button>
+
+  <div class="row d-flex justify-content-center">
+
+    <div class="col-lg-3 border border-2 rounded text-center m-1 py-3 " *ngFor="let element of result?.Perso">
+
+      <img class="img-circle my-4" src="{{element.image}}" alt="" width="140" height="140">
+
+      <h1 class="m-0">{{element.name}}</h1>
+
+      <div class="d-flex justify-content-around">
+
+        <a class="cursor" (click)="deletePerso(element._id)">
+          <fa-icon [icon]="faTrashCan" style="font-size: 30px; color:rgba(175, 168, 154, 0.732) "></fa-icon>
+        </a>
+
+        <a class="cursor" data-bs-toggle="modal" data-bs-target="#Modifier" (click)="selectPerso(element._id,element.name, element.id_anime, element.image)">
+          <fa-icon [icon]="faPen" style="font-size: 30px; color:rgba(175, 168, 154, 0.732) "> </fa-icon>
+        </a>
+
+        <a [routerLink]="['/Perso', element._id]"
+          (click)="selectPerso(element._id,element.name, element.id_anime, element.image)">
+          <fa-icon [icon]="faCircleChevronRight" style="font-size: 35px; color:rgb(158, 158, 158) "></fa-icon>
+        </a>
+
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ajouter un Personnage</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #AddForm="ngForm" (ngSubmit)="AddPerso(AddForm.value)">
+              <div class="main">
+                <div class="mb-2">
+                  <input name="image" ngModel placeholder="image" type="text" class="input-field form-control" />
+                </div>
+                <div class="mb-2">
+                  <input name="name" ngModel placeholder="Name" id="name" type="text"
+                    class="input-field form-control" />
+                </div>
+
+                <select ngModel name="id_anime" id="" class="form-select mb-3">
+                  <option selected>choisi un Animé</option>
+                  <option *ngFor="let Anim of animes?.Anime" value="{{Anim._id}}">{{Anim.name}}</option>
+                </select>
+
+              </div>
+
+              <div class="modal-footer">
+
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-------------------------------------------- MODAL MODIFIER ---------------------------------------------->
+
+    <div class="modal fade" id="Modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modifier Le personnage</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #EditForm="ngForm" (ngSubmit)="UpdatePerso(EditForm.value)">
+              <div class="main">
+                <div class="mb-2">
+                  <input name="image" [(ngModel)]="image" type="text" [value]="image"
+                    class="input-field form-control" />
+                </div>
+
+                <div class="mb-2">
+                  <input name="name" [(ngModel)]="name" id="name" type="text" [value]="name"
+                    class="input-field form-control" />
+                </div>
+
+                <select [(ngModel)]="id_anime" name="id_anime" class="form-select mb-3">
+
+                  <option *ngFor="let Anim of animes?.Anime" value="{{Anim._id}}">{{Anim.name}}</option>
+                </select>
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Enregistrer les changement</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
