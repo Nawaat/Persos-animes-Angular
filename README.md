@@ -1,7 +1,9 @@
 # Description du projet :
 
-Ce projet est un front-end Angular qui se connecte à une API REST Node.js pour afficher les données fournies par cette dernière.
-Le front-end inclut également un système de connexion pour permettre aux utilisateurs de s'authentifier avant d'accéder aux données. Cette fonctionnalité est mise en œuvre en utilisant canActivate pour protéger les routes qui nécessitent une authentification.
+Ce projet est un front-end développé en Angular qui communique avec une API REST Node.js pour effectuer les opérations CRUD (create, read, update, delete) sur une base de données.
+
+Il inclut également un système de connexion pour permettre aux utilisateurs de s'authentifier avant d'accéder aux données. Cette fonctionnalité est mise en œuvre en utilisant canActivate pour protéger les routes qui nécessitent une authentification.
+
 
 ![alt text](page_persos.png)
 
